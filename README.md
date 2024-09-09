@@ -23,34 +23,30 @@ CREATE TABLE users (
 now open terminal in flask app then : 
 
 ```bash
-python -m venv venv
+    python -m venv venv
 ```
 
 ```bash
-source venv/bin/activate
+    source venv/bin/activate
 ```
 
 ```bash
-pip install -r requirements.txt
+    pip install -r requirements.txt
 ```
 
 ```bash
-python app.py db init
+    python app.py db init
 ```
 
-```text
-control+C to stop localhost
-```
+> control+C to stop localhost
 
 ```bash
-python app.py db migrate
+    python app.py db migrate
 ```
 
-```text
-control+C to stop localhost
-```
+> control+C to stop localhost
 
 ```bash
-python app.py db upgrade
+    python app.py db upgrade
 ```
 
