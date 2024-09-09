@@ -1,10 +1,10 @@
-demonstration
+simple flask app to create new user and store data in postgresql db , use some encryption for password , and logout functionality.
 
+demonstration : 
 
 https://github.com/user-attachments/assets/df1bddc7-4080-4b30-abb2-2cef4fb86aa0
 
 
-simple flask app to create new user and store data in postgresql db , use some encryption for password , and logout functionality.
 
 prerequisite : postgresql database with table users
 
@@ -18,7 +18,10 @@ CREATE TABLE users (
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
+
+
 now open terminal in flask app then : 
+
 ```bash
 python -m venv venv
 ```
