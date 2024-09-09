@@ -14,14 +14,14 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:e11i0t@localhost/db_sept8'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost/db_name'
 app.config['SECRET_KEY'] = 'secret_key'
-app.config['MAIL_SERVER'] = 'smtp.office365.com'
+app.config['MAIL_SERVER'] = 'smtp.office365.com'    #provider may be gmail or office365 or other 
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'atharvanikam@hotmail.com'
-app.config['MAIL_PASSWORD'] = 'Atharva@007'
+app.config['MAIL_USERNAME'] = 'email@mail.com'        
+app.config['MAIL_PASSWORD'] = 'password'
 
 db = SQLAlchemy(app)
 mail = Mail(app)
@@ -77,15 +77,14 @@ def register():
         # Generate a verification token
         token = secrets.token_urlsafe(16)
 
-        # Save the user to the database with a pending status
-        #user = User(email=email, password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()), verified=False, verification_token=token)        
+        # Save the user to the database with a pending status        
         user = User(email=email, password=bcrypt.generate_password_hash(password).decode('utf-8'), verified=False, verification_token=token)
         db.session.add(user)
         db.session.commit()
 
         # Send a verification email
         try:
-            msg = Message('Verify your email', sender='atharvanikam@hotmail.com', recipients=[email])
+            msg = Message('Verify your email', sender='email@mal.com', recipients=[email])
             msg.body = f'Click this link to verify your email: {url_for("verify_email", token=token, _external=True)}'
             mail.send(msg)
             flash('Registration successful. Please verify your email to login.', 'success')
