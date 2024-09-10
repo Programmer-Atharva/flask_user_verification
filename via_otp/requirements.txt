@@ -1,0 +1,8 @@
+Flask
+Flask-WTF
+WTForms
+bcrypt
+Flask-SQLAlchemy
+Flask-Mail
+pyotp
+base64
