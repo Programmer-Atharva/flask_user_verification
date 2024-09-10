@@ -48,13 +48,6 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Register')
 
-def login_required(f):
-    def decorated_function(*args, **kwargs):
-        if 'email' not in session:
-            flash('You need to login first.', 'danger')
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return decorated_function
 
 
 @app.route('/')
