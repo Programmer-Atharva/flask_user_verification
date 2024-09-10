@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-3xl font-bold mb-4">Login</h2>
+        <form action="" method="post" class="space-y-4">
+            {{ form.hidden_tag() }}
+            <div class="flex flex-col">
+                <label for="email" class="text-lg font-bold">Email:</label>
+                <input type="email" id="email" name="email" class="p-2 border border-gray-400 rounded" placeholder="Enter your email" required>
+                {% if form.email.errors %}
+                    <div class="text-red-500 text-sm">{{ form.email.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="flex flex-col">
+                <label for="password" class="text-lg font-bold">Password:</label>
+                <input type="password" id="password" name="password" class="p-2 border border-gray-400 rounded" placeholder="Enter your password" required>
+                {% if form.password.errors %}
+                    <div class="text-red-500 text-sm">{{ form.password.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
+        </form>
+        <p class="text-sm mt-4">Don't have an account? <a href="{{ url_for('register') }}" class="text-blue-500 hover:text-blue-700">Register</a></p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="list-none mb-4">
+                {% for message in messages %}
+                    <li class="text-{{ 'success' if message.category == 'success' else 'danger' }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

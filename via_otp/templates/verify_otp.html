@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-blue-600">Verify OTP</h2>
+        <form action="" method="post" class="space-y-4">
+            {{ form.hidden_tag() }}
+            <div class="flex flex-col">
+                <label for="otp" class="text-lg font-bold">OTP:</label>
+                <input type="text" id="otp" name="otp" class="p-2 border border-gray-400 rounded" placeholder="Enter the OTP" required>
+                {% if form.otp.errors %}
+                    <div class="text-red-500 text-sm">{{ form.otp.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Verify</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="list-none mb-4">
+              {% for message in messages %}
+                <li class="text-{{ 'success' if message.category == 'success' else 'danger' }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
