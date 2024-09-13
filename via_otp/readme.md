@@ -14,9 +14,9 @@ prerequisite : postgresql database with table users
 ```sql
 CREATE TABLE users (
     email VARCHAR(120) PRIMARY KEY UNIQUE NOT NULL,
-    password VARCHAR(120) NOT NULL,
+    password VARCHAR(128) NOT NULL,
     verified BOOLEAN DEFAULT FALSE,
-    verification_token VARCHAR(120) NULL,
+    verification_token VARCHAR(128) NULL,
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
